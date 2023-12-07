@@ -41,10 +41,10 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==REQUEST_CODE_INPUT){
-            if (resultCode == RESULT_OK) {
-                val result=data?.getStringArrayExtra(RecognizerIntent.EXTRA_RESULTS)
-                val spokenTEXT= result?.get(0)?:""
-                checkSpokenText(spokenTEXT)
+            if (resultCode == RESULT_OK&&data!=null) {
+                val result=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                val spokenTEXT= result?.get(0)
+                checkSpokenText(spokenTEXT.toString())
             }
         }else{
             Log.d("resultError","result ERRor")
